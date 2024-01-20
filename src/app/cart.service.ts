@@ -17,7 +17,9 @@ export class CartService implements ICartService {
   constructor(
     private products: ProductService,
     private notificationService: NotificationService
-  ) {}
+  ) {
+    this.getFromLocalStorage();
+  }
 
   items: IProduct[] = [];
 
@@ -39,13 +41,32 @@ export class CartService implements ICartService {
     return this.items.some((item) => item.id === productId);
   }
 
-  private addNewItem(product: IProduct) {
-    this.items.push({ ...product, quantity: 1 });
+  private saveInLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(this.items));
+  }
+
+  private getFromLocalStorage() {
+    let cart = localStorage.getItem('cart');
+    if (cart) {
+      this.items = JSON.parse(cart);
+    }
+  }
+
+  private resetLocalStorage() {
+    localStorage.removeItem('cart');
+  }
+
+  private addNewItem(product: IProduct, quantity: number) {
+    this.items.push({
+      ...product,
+      quantity,
+      subTotal: Math.round(product.price * quantity),
+    });
   }
 
   private updateItemQuantity(product: IProduct, quantity: number) {
     this.items = this.items.filter((item) => item.id !== product.id);
-    this.items.push({ ...product, quantity });
+    this.addNewItem(product, quantity);
   }
 
   addProduct(productId: number, quantity: number = 1) {
@@ -60,13 +81,14 @@ export class CartService implements ICartService {
         message: 'Product quantity updated',
         category: 'alert-success',
       });
-      return;
+    } else {
+      this.addNewItem(product as IProduct, quantity);
+      this.notificationService.notificationStatusUpdated.emit({
+        message: 'Product added',
+        category: 'alert-success',
+      });
     }
-    this.addNewItem(product as IProduct);
-    this.notificationService.notificationStatusUpdated.emit({
-      message: 'Product added',
-      category: 'alert-success',
-    });
+    this.saveInLocalStorage();
   }
 
   removeProduct(productId: number) {
@@ -79,12 +101,14 @@ export class CartService implements ICartService {
       message: 'Product removed',
       category: 'alert-success',
     });
+    this.saveInLocalStorage();
   }
 
   addDiscount(discount: number) {}
 
   resetCart() {
     this.items = [];
+    this.resetLocalStorage();
   }
 
   checkout() {

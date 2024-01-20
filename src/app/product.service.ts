@@ -15,6 +15,7 @@ export interface IProduct {
   imageUrl: string;
   categories: number[];
   quantity?: number;
+  subTotal?: number;
   size: 'S' | 'M' | 'L' | 'XL';
 }
 

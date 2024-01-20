@@ -1,1 +1,55 @@
-<p>cart works!</p>
+<div style="margin: 8rem auto 10rem auto">
+  <div class="container">
+    <h1 class="mb-4">Cart</h1>
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Sub Total</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>
+            <div class="d-flex align-items-center">
+              <img
+                [src]="item.imageUrl"
+                alt=""
+                style="width: 45px; height: 45px"
+              />
+              <div class="ms-3">
+                <p class="fw-bold mb-1">{{ item.name }}</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1">{{ item.price | currency }}</p>
+          </td>
+          <td>
+            {{ item.quantity }}
+          </td>
+          <td>{{ item.subTotal || 0 | currency }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-link btn-sm btn-rounded"
+              (click)="goToItem(item.id)"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-link btn-sm btn-rounded btn-danger"
+              (click)="removeItem(item.id)"
+            >
+              remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
