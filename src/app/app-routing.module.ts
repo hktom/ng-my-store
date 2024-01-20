@@ -45,7 +45,7 @@ const routes: Routes = [
       {
         path: '',
         component: CategoriesComponent,
-        resolve: { products: productResolver },
+        resolve: { products: productsResolver },
       },
       {
         path: ':category/:id',
