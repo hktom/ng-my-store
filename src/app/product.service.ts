@@ -108,7 +108,8 @@ export class ProductService {
     {
       id: 6,
       name: 'Hat',
-      description: 'Introducing our Urban Chic Fedora Hat – a timeless accessory that effortlessly combines sophistication with contemporary flair. Elevate your style game and make a statement with this versatile and on-trend hat designed to complement any look.',
+      description:
+        'Introducing our Urban Chic Fedora Hat – a timeless accessory that effortlessly combines sophistication with contemporary flair. Elevate your style game and make a statement with this versatile and on-trend hat designed to complement any look.',
       price: 14.99,
       imageUrl:
         'https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGF0fGVufDB8fDB8fHww',
@@ -116,4 +117,15 @@ export class ProductService {
       size: 'S',
     },
   ];
+
+  getProductsByCategory(categoryId: number) {
+    if (categoryId === 0) return this.products;
+    return this.products.filter((product) =>
+      product.categories.includes(categoryId)
+    );
+  }
+
+  getProductById(productId: number) {
+    return this.products.find((product) => product.id === productId);
+  }
 }

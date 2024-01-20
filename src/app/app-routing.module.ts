@@ -8,6 +8,8 @@ import { ProductComponent } from './product/product.component';
 import { StoreComponent } from './store/store.component';
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
+import { authGuardGuard } from './auth-guard.guard';
+import { productResolver, productsResolver } from './product.resolver';
 
 const routes: Routes = [
   {
@@ -21,6 +23,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [authGuardGuard],
   },
   {
     path: 'account',
@@ -33,14 +36,21 @@ const routes: Routes = [
   {
     path: 'product/:id',
     component: ProductComponent,
+    resolve: { product: productResolver },
   },
   {
     path: 'store',
     component: StoreComponent,
     children: [
       {
+        path: '',
+        component: CategoriesComponent,
+        resolve: { products: productResolver },
+      },
+      {
         path: ':category/:id',
         component: CategoriesComponent,
+        resolve: { products: productsResolver },
       },
     ],
   },
