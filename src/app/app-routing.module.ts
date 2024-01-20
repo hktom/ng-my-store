@@ -26,34 +26,24 @@ const routes: Routes = [
     path: 'account',
     component: AccountComponent,
   },
-  // {
-  //   path: 'store',
-  //   component: StoreComponent,
-  //   children: [
-  //     {
-  //       path: '/categories',
-  //       component: CategoriesComponent,
-  //       children: [
-  //         { path: 'shoes', component: ProductComponent },
-  //         { path: 'clothes', component: ProductComponent },
-  //         { path: 'accessories', component: ProductComponent },
-  //       ],
-  //     },
-  //     {
-  //       path: '/cart',
-  //       component: CartComponent,
-  //     },
-  //     {
-  //       path: '/products',
-  //       component: ProductComponent,
-  //       children: [
-  //         { path: 'shoes', component: ProductComponent },
-  //         { path: 'clothes', component: ProductComponent },
-  //         { path: 'accessories', component: ProductComponent },
-  //       ],
-  //     },
-  //   ],
-  // },
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
+  {
+    path: 'store',
+    component: StoreComponent,
+    children: [
+      {
+        path: ':category/:id',
+        component: CategoriesComponent,
+      },
+      {
+        path: 'product/:id',
+        component: ProductComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({

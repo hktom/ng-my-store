@@ -31,6 +31,7 @@
         class="col-md-4"
         *ngFor="let category of categories"
         style="cursor: pointer"
+        (click)="goToCategory(category)"
       >
         <div class="card bg-dark text-white">
           <img [src]="category.imageUrl" class="card-img" alt="Stony Beach" />
