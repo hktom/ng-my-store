@@ -16,7 +16,7 @@ export class MenuService {
     { name: 'Home', link: '' },
     {
       name: 'Products',
-      link: '/products',
+      link: '/store',
       children: [
         { name: 'Shoes', link: '/shoes' },
         { name: 'Clothes', link: '/clothes' },

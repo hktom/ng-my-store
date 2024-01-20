@@ -1,1 +1,23 @@
-<p>store works!</p>
+<div style="margin: 8rem auto 10rem auto">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="list-group list-group-light">
+          <li
+            class="list-group-item px-3 border-0"
+            aria-current="true"
+            *ngFor="let category of categories"
+            (click)="goToCategory(category)"
+            style="cursor: pointer"
+            appLinkOver
+          >
+            {{ category.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
