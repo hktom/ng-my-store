@@ -15,7 +15,7 @@
           <strong>{{ product?.price | currency }}</strong>
         </p>
 
-        <form class="row g-3">
+        <div class="row g-3">
           <div class="col-auto">
             <label for="inputPassword2" class="visually-hidden">Password</label>
             <input
@@ -24,14 +24,20 @@
               [min]="1"
               [max]="10"
               class="form-control"
+              #quantity
             />
           </div>
+
           <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">
+            <button
+              type="submit"
+              class="btn btn-primary mb-3"
+              (click)="addProductToCart(product!.id, +quantity.value)"
+            >
               Add to cart
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

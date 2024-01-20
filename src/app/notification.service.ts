@@ -1,7 +1,12 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+
+export interface INotification {
+  message: string;
+  category: 'alert-success' | 'alert-danger';
+}
 
 interface INotificationService {
-  showNotification: (message: string, category: 'error' | 'success') => void;
+  showNotification: (notification: INotification) => void;
 }
 
 @Injectable({
@@ -10,7 +15,9 @@ interface INotificationService {
 export class NotificationService implements INotificationService {
   constructor() {}
 
-  showNotification(message: string, category: 'error' | 'success') {
-    console.log(message, category);
+  notificationStatusUpdated = new EventEmitter<INotification>();
+
+  showNotification(notification: INotification) {
+    console.log('notification', notification);
   }
 }

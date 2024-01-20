@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IProduct, ProductService } from './product.service';
+import { NotificationService } from './notification.service';
 
 interface ICartService {
   addProduct: (productId: number) => void;
@@ -13,7 +14,10 @@ interface ICartService {
   providedIn: 'root',
 })
 export class CartService implements ICartService {
-  constructor(private products: ProductService) {}
+  constructor(
+    private products: ProductService,
+    private notificationService: NotificationService
+  ) {}
 
   items: IProduct[] = [];
 
@@ -22,6 +26,10 @@ export class CartService implements ICartService {
       (product) => product.id === productId
     );
     if (!product) {
+      this.notificationService.notificationStatusUpdated.emit({
+        message: 'Product not found',
+        category: 'alert-danger',
+      });
       return false;
     }
     return product;
@@ -48,9 +56,17 @@ export class CartService implements ICartService {
 
     if (this.checkIfItemExists(productId)) {
       this.updateItemQuantity(product as IProduct, quantity);
+      this.notificationService.notificationStatusUpdated.emit({
+        message: 'Product quantity updated',
+        category: 'alert-success',
+      });
       return;
     }
     this.addNewItem(product as IProduct);
+    this.notificationService.notificationStatusUpdated.emit({
+      message: 'Product added',
+      category: 'alert-success',
+    });
   }
 
   removeProduct(productId: number) {
@@ -59,6 +75,10 @@ export class CartService implements ICartService {
       return;
     }
     this.items = this.items.filter((item) => item.id !== productId);
+    this.notificationService.notificationStatusUpdated.emit({
+      message: 'Product removed',
+      category: 'alert-success',
+    });
   }
 
   addDiscount(discount: number) {}
@@ -69,5 +89,9 @@ export class CartService implements ICartService {
 
   checkout() {
     this.resetCart();
+    this.notificationService.notificationStatusUpdated.emit({
+      message: 'Your order has been placed, successfully',
+      category: 'alert-success',
+    });
   }
 }

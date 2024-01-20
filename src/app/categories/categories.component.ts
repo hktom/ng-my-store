@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ICategory, IProduct, ProductService } from '../product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 

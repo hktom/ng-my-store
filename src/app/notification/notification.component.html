@@ -1,0 +1,5 @@
+<div *ngIf="showNotification">
+    <div class="alert" role="alert" id="toast" [ngClass]="notifications?.category">
+      {{notifications?.message}}
+    </div>
+</div>
