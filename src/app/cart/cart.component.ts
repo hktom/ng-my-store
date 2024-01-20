@@ -27,4 +27,9 @@ export class CartComponent {
     this.cartService.removeProduct(productId);
     this.items = this.cartService.items;
   }
+
+  checkout() {
+    this.cartService.checkout();
+    this.items = this.cartService.items;
+  }
 }
