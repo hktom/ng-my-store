@@ -4,6 +4,7 @@
       class="col-md-6 mb-4"
       *ngFor="let product of products"
       style="cursor: pointer"
+      (click)="goToProduct(product)"
     >
       <div class="card">
         <img
@@ -12,11 +13,16 @@
           alt="Hollywood Sign on The Hill"
           style="height: 300px; object-fit: cover"
         />
-        <div class="card-img-overlay" appCardOver style="height: 300px; object-fit: cover"></div>
+        <div
+          class="card-img-overlay"
+          appCardOver
+          style="height: 300px; object-fit: cover"
+        ></div>
         <div class="card-body">
           <h5 class="card-title">{{ product.name }}</h5>
           <p class="card-text">
-            {{ product.description }} <strong>{{ product.price | currency }}</strong>
+            {{ product.description }}
+            <strong>{{ product.price | currency }}</strong>
           </p>
         </div>
       </div>

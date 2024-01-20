@@ -31,16 +31,16 @@ const routes: Routes = [
     component: CartComponent,
   },
   {
+    path: 'product/:id',
+    component: ProductComponent,
+  },
+  {
     path: 'store',
     component: StoreComponent,
     children: [
       {
         path: ':category/:id',
         component: CategoriesComponent,
-      },
-      {
-        path: 'product/:id',
-        component: ProductComponent,
       },
     ],
   },

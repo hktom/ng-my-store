@@ -19,4 +19,8 @@ export class CategoriesComponent {
     this.categories = this.product.categories;
     this.products = this.product.products;
   }
+
+  goToProduct(product: IProduct) {
+    this.router.navigate(['product', product.id]);
+  }
 }

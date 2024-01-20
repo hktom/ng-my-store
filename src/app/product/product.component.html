@@ -1,1 +1,38 @@
-<p>product works!</p>
+<div style="margin: 8rem auto 10rem auto">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img
+          [src]="product?.imageUrl"
+          class="w-100"
+          style="height: 700px; object-fit: cover; object-position: center"
+        />
+      </div>
+      <div class="col-md-6">
+        <h1>{{ product?.name }}</h1>
+        <p>{{ product?.description }}</p>
+        <p>
+          <strong>{{ product?.price | currency }}</strong>
+        </p>
+
+        <form class="row g-3">
+          <div class="col-auto">
+            <label for="inputPassword2" class="visually-hidden">Password</label>
+            <input
+              type="number"
+              [defaultValue]="1"
+              [min]="1"
+              [max]="10"
+              class="form-control"
+            />
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">
+              Add to cart
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
