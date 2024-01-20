@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { NotificationService } from './notification.service';
+import { Router } from '@angular/router';
 
 interface IAuthService {
-  login(username: string, password: string): boolean;
+  login(username: string, password: string): void;
   logout(): void;
   isAuthenticated(): boolean;
   getLoggedInUser(): string;
@@ -11,18 +13,33 @@ interface IAuthService {
   providedIn: 'root',
 })
 export class AuthService implements IAuthService {
-  constructor() {}
+  constructor(
+    private notificationService: NotificationService,
+    private router: Router
+  ) {}
 
-  login(username: string, password: string): boolean {
-    if (username === 'admin' && password === 'admin') {
+  authStatusUpdate = new EventEmitter<boolean>();
+
+  login(username: string, password: string): void {
+    if (username === 'admin@admin.com' && password === 'admin') {
       localStorage.setItem('username', username);
-      return true;
+      this.notificationService.notificationStatusUpdated.emit({
+        message: 'You have successfully logged in!',
+        category: 'alert-success',
+      });
+      this.router.navigate(['/']);
+      this.authStatusUpdate.emit(true);
+      return;
     }
-
-    return false;
+    this.notificationService.notificationStatusUpdated.emit({
+      message: 'Invalid username or password!',
+      category: 'alert-danger',
+    });
   }
 
   logout(): void {
+    this.router.navigate(['/']);
+    this.authStatusUpdate.emit(false);
     localStorage.removeItem('username');
   }
 

@@ -17,7 +17,16 @@ export class CategoriesComponent {
     private routeActive: ActivatedRoute
   ) {
     this.categories = this.product.categories;
-    this.products = this.product.products;
+    const categoryId = +this.routeActive.snapshot.params['id'];
+    this.products = this.product.products.filter((product) =>
+      product.categories.includes(categoryId)
+    );
+    this.routeActive.params.subscribe((params) => {
+      const categoryId = +params['id'];
+      this.products = this.product.products.filter((product) =>
+        product.categories.includes(categoryId)
+      );
+    });
   }
 
   goToProduct(product: IProduct) {
