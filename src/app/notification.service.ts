@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class NotificationService {
+interface INotificationService {
+  showNotification: (message: string, category: 'error' | 'success') => void;
+}
 
-  constructor() { }
+@Injectable({
+  providedIn: 'root',
+})
+export class NotificationService implements INotificationService {
+  constructor() {}
+
+  showNotification(message: string, category: 'error' | 'success') {
+    console.log(message, category);
+  }
 }
