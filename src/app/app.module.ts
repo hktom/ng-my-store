@@ -14,6 +14,7 @@ import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AccountComponent } from './account/account.component';
+import { CardOverDirective } from './card-over.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AccountComponent } from './account/account.component';
     CartComponent,
     LoginComponent,
     CheckoutComponent,
-    AccountComponent
+    AccountComponent,
+    CardOverDirective
   ],
   imports: [
     BrowserModule,

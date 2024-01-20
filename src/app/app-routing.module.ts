@@ -11,49 +11,49 @@ import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
   },
   {
-    path: '/about',
+    path: 'about',
     component: AboutComponent,
   },
   {
-    path: '/store',
-    component: StoreComponent,
-    children: [
-      {
-        path: '/categories',
-        component: CategoriesComponent,
-        children: [
-          { path: 'shoes', component: ProductComponent },
-          { path: 'clothes', component: ProductComponent },
-          { path: 'accessories', component: ProductComponent },
-        ],
-      },
-      {
-        path: '/cart',
-        component: CartComponent,
-      },
-      {
-        path: '/products',
-        component: ProductComponent,
-        children: [
-          { path: 'shoes', component: ProductComponent },
-          { path: 'clothes', component: ProductComponent },
-          { path: 'accessories', component: ProductComponent },
-        ],
-      },
-    ],
-  },
-  {
-    path: '/login',
+    path: 'login',
     component: LoginComponent,
   },
   {
-    path: '/account',
+    path: 'account',
     component: AccountComponent,
   },
+  // {
+  //   path: 'store',
+  //   component: StoreComponent,
+  //   children: [
+  //     {
+  //       path: '/categories',
+  //       component: CategoriesComponent,
+  //       children: [
+  //         { path: 'shoes', component: ProductComponent },
+  //         { path: 'clothes', component: ProductComponent },
+  //         { path: 'accessories', component: ProductComponent },
+  //       ],
+  //     },
+  //     {
+  //       path: '/cart',
+  //       component: CartComponent,
+  //     },
+  //     {
+  //       path: '/products',
+  //       component: ProductComponent,
+  //       children: [
+  //         { path: 'shoes', component: ProductComponent },
+  //         { path: 'clothes', component: ProductComponent },
+  //         { path: 'accessories', component: ProductComponent },
+  //       ],
+  //     },
+  //   ],
+  // },
 ];
 
 @NgModule({

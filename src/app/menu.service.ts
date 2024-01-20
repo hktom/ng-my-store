@@ -13,7 +13,7 @@ export class MenuService {
   constructor() {}
 
   menus: IMenu[] = [
-    { name: 'Home', link: '/' },
+    { name: 'Home', link: '' },
     {
       name: 'Products',
       link: '/products',
