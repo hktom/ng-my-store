@@ -1,1 +1,55 @@
-<p>footer works!</p>
+<footer class="c-bg-primary text-black text-center text-lg-start py-4">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!--Grid row-->
+    <div class="row">
+      <!--Grid column-->
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Welcome My Store</h5>
+
+        <p>
+          Welcome to Trendify Boutique, your go-to destination for the latest in
+          fashion trends and style. At Trendify, we curate a diverse collection
+          of high-quality clothing that caters to every taste and occasion. From
+          casual chic to formal elegance, our online store offers a wide range
+          of clothing items, ensuring you'll find the perfect pieces to elevate
+          your wardrobe.
+        </p>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled mb-0">
+          <li *ngFor="let menu of menus.slice(0, 3)">
+            <a [routerLink]="menu.link" class="text-white">{{ menu.name }}</a>
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase mb-0">Links</h5>
+
+        <ul class="list-unstyled">
+          <li *ngFor="let menu of menus.slice(3)">
+            <a [routerLink]="menu.link" class="text-white">{{ menu.name }}</a>
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2024 Copyright:
+    <a class="text-white" href="https://github.com/hktom/">Tom Hikari</a>
+  </div>
+  <!-- Copyright -->
+</footer>
